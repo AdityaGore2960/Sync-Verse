@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Theme Colors (Light Theme) */
+  --color-brand-primary: #1A73E8;
+  --color-brand-hover: #1557B0;
+
+  --color-bg-canvas: #F8F9FA;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-sidebar: #FFFFFF;
+  --color-bg-card: #FFFFFF;
+  --color-bg-card-hover: #F1F3F4;
+  --color-bg-overlay: rgba(0, 0, 0, 0.3);
+
+  --color-text-heading: #000000;
+  --color-text-body: #1F1F1F;
+  --color-text-muted: #444746;
+  --color-text-on-brand: #FFFFFF;
+
+  --color-border-subtle: #C4C7C5;
+  --color-border-strong: #747775;
+  --color-border-focus: #1A73E8;
+
+  /* Shadows (Google Docs style) */
+  --shadow-notion-sm: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
+  --shadow-notion: 0 1px 3px 0 rgba(60, 64, 67, .3), 0 4px 8px 3px rgba(60, 64, 67, .15);
+
+  /* Transitions & Animations */
+  --animate-fade-in: fade-in 0.2s ease-out forwards;
+  --animate-pop-in: pop-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.98);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, transform, box-shadow;
+    transition-timing-function: ease;
+    transition-duration: 200ms;
+  }
+
+  html,
+  body {
+    background-color: var(--color-bg-canvas);
+    color: var(--color-text-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-text-heading);
+    font-weight: 700;
+    margin: 0;
+  }
+}
+
+@layer components {
+
+  /* Primary Button */
+  .btn-primary {
+    @apply bg-brand-primary text-text-heading px-4 py-2 rounded-lg font-bold transition-all hover:bg-brand-hover focus:outline-none flex justify-center items-center gap-2 border-0 cursor-pointer;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply bg-transparent text-text-body px-4 py-2 rounded-lg border border-border-subtle font-bold transition-all hover:bg-bg-card-hover focus:outline-none flex justify-center items-center gap-2 cursor-pointer;
+  }
+
+  /* Inputs */
+  .input-field {
+    @apply w-full bg-bg-surface border border-border-subtle text-text-body text-sm rounded-lg px-3 py-2 transition-all focus:outline-none focus:border-brand-primary placeholder:text-text-muted;
+  }
+
+  /* Shared Card Style */
+  .card-styled {
+    @apply bg-bg-card border border-border-subtle rounded-[12px] p-5 transition-all duration-200 hover:bg-bg-card-hover hover:scale-[1.02] cursor-pointer;
+  }
+}
+
+/* Editor Overrides for Dark Theme */
+.gdocs-editor {
+  @apply flex flex-col h-full w-full bg-bg-canvas;
+}
+
+.gdocs-editor .ql-toolbar {
+  @apply !border-0 !border-b !border-border-subtle !bg-bg-sidebar w-full flex justify-center !py-1 shrink-0 z-10 sticky top-0;
+}
+
+.gdocs-editor .ql-container {
+  @apply !border-0 !bg-bg-canvas grow overflow-y-auto flex justify-center py-10;
+}
+
+.gdocs-editor .ql-editor {
+  @apply bg-bg-surface border border-border-subtle shadow-xl rounded-lg max-w-[816px] w-full min-h-[1056px] p-[96px] mx-auto text-text-body outline-none transition-none;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
