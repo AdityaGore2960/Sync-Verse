@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SyncVerse — Backend API
 
 > Real-time collaborative document editing platform — Node.js + Express + MongoDB boilerplate
@@ -137,6 +136,4 @@ Authorization: Bearer <your_jwt_token>
 - [ ] Add rate limiting (`express-rate-limit`)
 - [ ] Write unit & integration tests (Jest + Supertest)
 - [ ] Add Docker + docker-compose support
-=======
-# Sync-Verse
->>>>>>> 7e612a768c8cb325d807e23fdaf98046de8deb3d
+
